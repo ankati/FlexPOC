@@ -1,0 +1,125 @@
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				width="100%" height="100%" layout="horizontal" paddingBottom="0" paddingLeft="0"
+				paddingRight="0" paddingTop="0">
+	<fx:Declarations>
+		<fx:Model id="checkModel">
+			<User>
+				<FirstName>{fname.text}</FirstName>
+				<DOB>{dob.text}</DOB>
+				<Email>{email.text}</Email>
+				<Age>{age.text}</Age>
+				<SSN>{ssn.text}</SSN>
+				<Zip>{zip.text}</Zip>
+				<Phone>{phone.text}</Phone>
+			</User>
+		</fx:Model>
+		
+		<mx:StringValidator maxLength="12" minLength="4" property="text" source="{fname}"/>
+		<mx:PhoneNumberValidator property="text" source="{phone}"/>
+		<mx:DateValidator property="text" source="{dob}"/>
+		<mx:EmailValidator property="text" source="{email}"/>
+		<mx:NumberValidator domain="int" integerError="Enter Integer value" maxValue="100"
+							minValue="18" property="text" source="{age}"/>
+		<mx:SocialSecurityValidator property="text" source="{ssn}"/>
+		<mx:ZipCodeValidator property="text" source="{zip}"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var str:String;
+				str=event.toString();
+				
+			}
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				
+				Alert.show(phone.text, 'Message');
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%">
+		<mx:Panel width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10"
+				  paddingTop="10" title="Flex POC">
+			<mx:HRule width="100%">
+				
+			</mx:HRule>
+			<s:HGroup visible="true">
+				<s:VGroup height="100%" verticalAlign="middle">
+					<s:Label fontSize="20" fontWeight="bold" text="Flex HGroup"/>
+					<s:Label fontSize="20" fontWeight="bold" text="Flex HGroup0"/>
+				</s:VGroup>	
+				<s:VGroup height="100%" verticalAlign="middle">
+					<s:Label fontSize="20" fontWeight="bold" text="Flex HGroup1"/>
+					<s:Label fontSize="20" fontWeight="bold" text="Flex HGroup2"/>
+				</s:VGroup>	
+			</s:HGroup>
+			
+			<s:RichText width="100%" height="100%">
+				<s:p/>
+				<s:p>Belowis the list</s:p>
+				<s:p/>
+				<s:list>
+					<s:li>Liste item 0</s:li>
+					<s:li>Liste item 1</s:li>
+				</s:list>
+				<s:p/>
+				<s:p>This is paragraph element</s:p>
+				<s:p/>
+			</s:RichText>
+			<mx:Button label="Click Me" click="button1_clickHandler(event)"/>
+			
+		</mx:Panel>
+		
+		
+		<mx:Panel width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10"
+				  paddingTop="10" title="Form Container">
+			
+			<mx:Text width="100%"
+					 text="Form."/>
+			
+			<mx:Form width="100%" height="100%">
+				<mx:FormHeading label="Form Heading."/>
+				
+				<mx:FormItem label="First name">
+					<mx:TextInput id="fname" width="200"/>
+				</mx:FormItem>
+				
+				<mx:FormItem label="Date of birth (mm/dd/yyyy)">
+					<mx:TextInput id="dob" width="200"/>
+				</mx:FormItem>
+				
+				<mx:FormItem label="E-mail address">
+					<mx:TextInput id="email" width="200"/>
+				</mx:FormItem>
+				
+				<mx:FormItem label="Age">
+					<mx:TextInput id="age" width="200"/>
+				</mx:FormItem>
+				
+				<mx:FormItem label="SSN">
+					<mx:TextInput id="ssn" width="200"/>
+				</mx:FormItem>
+				
+				<mx:FormItem label="Zip">
+					<mx:TextInput id="zip" width="200"/>
+				</mx:FormItem>
+				
+				<mx:FormItem label="Phone">
+					<mx:TextInput id="phone" width="200"/>
+				</mx:FormItem>
+				
+			</mx:Form>
+			<mx:Button label="Click Me" id="button2" click="button2_clickHandler(event)"/>
+		</mx:Panel>
+	
+	</s:VGroup>
+	
+	
+</mx:Application>
