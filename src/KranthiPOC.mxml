@@ -4,6 +4,7 @@
 				width="100%" height="100%" layout="horizontal" paddingBottom="0" paddingLeft="0"
 				paddingRight="0" paddingTop="0">
 	<fx:Declarations>
+		<s:HTTPService id="srv" url="http://www.thomas-bayer.com/sqlrest/CUSTOMER/3/"/>
 		<fx:Model id="checkModel">
 			<User>
 				<FirstName>{fname.text}</FirstName>
@@ -33,11 +34,12 @@
 			{
 				var str:String;
 				str=event.toString();
+				Alert.show("Hello", 'Message');
 				
 			}
 			protected function button2_clickHandler(event:MouseEvent):void
 			{
-				
+				phone.visible=false;
 				Alert.show(phone.text, 'Message');
 			}
 			
@@ -81,8 +83,7 @@
 		<mx:Panel width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10"
 				  paddingTop="10" title="Form Container">
 			
-			<mx:Text width="100%"
-					 text="Form."/>
+			<mx:Text width="100%" text="Form."/>
 			
 			<mx:Form width="100%" height="100%">
 				<mx:FormHeading label="Form Heading."/>
@@ -116,7 +117,17 @@
 				</mx:FormItem>
 				
 			</mx:Form>
-			<mx:Button label="Click Me" id="button2" click="button2_clickHandler(event)"/>
+			<mx:Button id="button2" label="Click Me" click="srv.send()"/>
+			<mx:DataGrid dataProvider="{srv.lastResult.CUSTOMER}">
+				<mx:columns>
+					<mx:DataGridColumn headerText="ID" dataField="ID"/>
+					<mx:DataGridColumn headerText="FIRSTNAME" dataField="FIRSTNAME"/>
+					<mx:DataGridColumn headerText="LASTNAME" dataField="LASTNAME"/>
+					<mx:DataGridColumn headerText="STREET" dataField="STREET"/>
+					<mx:DataGridColumn headerText="CITY" dataField="CITY"/>
+				</mx:columns>
+						
+			</mx:DataGrid>
 		</mx:Panel>
 	
 	</s:VGroup>
